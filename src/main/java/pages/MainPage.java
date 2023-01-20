@@ -2,8 +2,11 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class MainPage {
 
@@ -68,25 +71,24 @@ public class MainPage {
     }
 
     @Step("Нажать на кнопку Начинки, проверить отображение в корзине")
-    public boolean clickButtonFillingAndCheck() {
+    public void clickButtonFillingAndCheck() {
         buttonFillings.click();
-        fillingForDrop.dragAndDropTo(basketOrder);
-        return fillingInBasket.isDisplayed();
     }
 
     @Step("Клик по Соусы, проверка отображения в корзине")
-    public boolean clickButtonSaucesAndCheck() {
+    public void clickButtonSaucesAndCheck() {
         lastIngredient.scrollIntoView(true);
         buttonSauces.click();
-        sauceForDrop.dragAndDropTo(basketOrder);
-        return sauceInBasket.isDisplayed();
     }
 
     @Step("Клик на Булки, проверка отображения в корзине")
-    public boolean clickButtonBunsAndCheck() {
+    public void clickButtonBunsAndCheck() {
         lastIngredient.scrollIntoView(true);
         buttonBuns.click();
-        bunForDrop.dragAndDropTo(basketOrder);
-        return bunInBasket.isDisplayed();
+    }
+
+    @Step("Проверка в каком разделе нахожусь")
+    public boolean selectInConstructorCheck(String name) {
+        return $(By.xpath("//div[contains(@class, 'current') and //span[contains(text(), '" + name + "')]]")).exists();
     }
 }
