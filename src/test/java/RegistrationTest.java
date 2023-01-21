@@ -47,7 +47,7 @@ public class RegistrationTest {
         registrationPage.register();
         Assert.assertEquals("Url отличается от ожидаемого", LoginPage.LOGIN_URL, url());
         Assert.assertEquals("Статус код отличается от ожидаемого", userClient.loginUser(user).extract().statusCode(), 200);
-        // auth = userClient.loginUser(user).extract().body().path("accessToken");
+        auth = userClient.loginUser(user).extract().body().path("accessToken");
     }
 
     @Test
